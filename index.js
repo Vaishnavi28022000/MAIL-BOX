@@ -90,6 +90,8 @@ app.post('/loggedin', urlencodedParser, function (req, res){
         if(result[0].password == password){
             res.render('mail',{'user': result[0]})
 
+        }else{
+            console.log('Invalid password');
         }
     });
 
