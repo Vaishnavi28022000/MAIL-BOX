@@ -150,12 +150,12 @@ app.post('/signedin', urlencodedParser, function (req, res){
         
             }else{
                 console.log('Password Not Matching...try again!!')
-                res.redirect('/signedin')
+                res.redirect('signin')
             }
 
         }else{
             console.log('User already exist')
-            res.redirect('/signedin')
+            res.redirect('signin')
 
         }
     });
