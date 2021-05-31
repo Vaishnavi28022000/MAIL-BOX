@@ -23,7 +23,8 @@ app.use(express.static('static'));
 
 //-------------------------------------------//
 
-mongoose.connect('mongodb+srv://vaishnavi:haravrva@cluster0.p1v2h.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',{
+// mongoose.connect('mongodb+srv://vaishnavi:haravrva@cluster0.p1v2h.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',{
+mongoose.connect(DB_URL,{
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
