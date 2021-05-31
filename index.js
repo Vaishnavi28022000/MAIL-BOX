@@ -92,6 +92,7 @@ app.post('/loggedin', urlencodedParser, function (req, res){
 
         }else{
             console.log('Invalid password');
+            res.redirect('/')
         }
     });
 
@@ -145,10 +146,13 @@ app.post('/signedin', urlencodedParser, function (req, res){
         
             }else{
                 console.log('Password Not Matching...try again!!')
+                res.redirect('/signedin')
             }
 
         }else{
             console.log('User already exist')
+            res.redirect('/signedin')
+
         }
     });
 
