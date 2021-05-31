@@ -84,10 +84,10 @@ app.post('/signedin', urlencodedParser, function (req, res){
 	var cpassword= req.body.cpassword;
 
     var query = { email: email };
-    db.collection("signin").find(query).toArray(function(err, result1) {
-        if (err) throw err;
-        console.log(result1);
-        if(result1.length==0){
+    // db.collection("signin").find(query).toArray(function(err, result1) {
+        // if (err) throw err;
+        // console.log(result1);
+        // if(result1.length==0){
             if(password==cpassword){
                 var data = {
                     "firstname": fname,
@@ -119,13 +119,14 @@ app.post('/signedin', urlencodedParser, function (req, res){
         
                 return res.redirect('/');
         
+            }else{
+                console.log('Password Not Matching...try again!!')
             }
-            console.log('Password Not Matching...try again!!')
 
-        }else{
-            console.log('User already exist')
-        }
-    });
+    //     }else{
+    //         console.log('User already exist')
+    //     }
+    // });
 
 });
 
