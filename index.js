@@ -94,6 +94,9 @@ app.post('/loggedin', urlencodedParser, function (req, res){
             console.log('Invalid password');
             res.redirect('/')
         }
+    }).catch(error=>{
+        res.redirect('/')
+        
     });
 
 });
