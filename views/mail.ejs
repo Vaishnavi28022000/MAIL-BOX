@@ -1,4 +1,17 @@
+
 <h1>This is mail Page</h1>
-<h3>Welcome <%= user.email %></h3>
-<input type="button" value="Send A Mail"><br><br>
-<input type="button" value="View Inbox"><br><br>
+<h2>Welcome <%=user.firstname%><%=user.lastname%></h2>
+<h3>Email Id : <%=user.email%></h3>
+
+<form action="/compose" method="POST">
+    <input type="hidden" name="email" id="email" value=<%= user.email%>>
+    <button type="submit">Compose</button>
+</form>
+<br>
+<form action="/inbox" method="POST">
+    <input type="hidden" name="email" id="email" value=<%= user.email%>>
+    <button type="submit">Inbox</button>
+</form>
+<br>
+<a href="/"><input type="button" value="Logout"><br><br></a>
+

@@ -23,7 +23,7 @@ app.use(express.static('static'));
 
 //-------------------------------------------//
 
-mongoose.connect('mongodb://localhost:27017/mailbox',{
+mongoose.connect('mongodb+srv://vaishnavi:haravrva@cluster0.p1v2h.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',{
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
@@ -43,16 +43,36 @@ app.get('/', function (req, res) {
         "Allow-access-Allow-Origin": '*'
     })
     
-	return res.render("login");
+	 res.render("login");
 })
 
 app.get('/signin', function (req, res) {
-	return res.render("signin");
+	 res.render("signin");
 });
 
 app.get('/forgot', function (req, res){
-	return res.render("forgot");
+	 res.render("forgot");
 });
+
+app.post('/compose', urlencodedParser, function (req, res){
+	var email= req.body.email;
+
+	 res.render("compose",{'email':email});
+});
+
+app.post('/inbox', urlencodedParser, function (req, res){
+	var email= req.body.email;
+
+
+    var query = { to: email };
+
+    db.collection("inbox").find(query).toArray(function(err, result) {
+        if (err) throw err;
+        res.render('inbox',{'data': result})
+
+    });
+});
+
 
 //-------------------------------------------//
 
@@ -60,14 +80,14 @@ app.get('/forgot', function (req, res){
 app.post('/loggedin', urlencodedParser, function (req, res){
 	var email= req.body.email;
 	var password= req.body.password;
-
+    
     var query = { email: email };
-    db.collection("login").find(query).toArray(function(err, result) {
+    db.collection("signin").find(query).toArray(function(err, result) {
         if (err) throw err;
         console.log(result);
         if(result[0].password == password){
-            return res.render('mail',{'user': result[0]})
-            // console.log('Done')
+            res.render('mail',{'user': result[0]})
+
         }
     });
 
@@ -84,10 +104,10 @@ app.post('/signedin', urlencodedParser, function (req, res){
 	var cpassword= req.body.cpassword;
 
     var query = { email: email };
-    // db.collection("signin").find(query).toArray(function(err, result1) {
-        // if (err) throw err;
-        // console.log(result1);
-        // if(result1.length==0){
+    db.collection("signin").find(query).toArray(function(err, result1) {
+        if (err) throw err;
+        console.log(result1);
+        if(result1.length==0){
             if(password==cpassword){
                 var data = {
                     "firstname": fname,
@@ -115,18 +135,18 @@ app.post('/signedin', urlencodedParser, function (req, res){
                     console.log("Record Inserted Successfully Into Login collection");
                 });
         
-                db.collection('signin').find().forEach( function(myDoc) { console.log( "email: " + myDoc.email ); } );
+                // db.collection('signin').find().forEach( function(myDoc) { console.log( "email: " + myDoc.email ); } );
         
-                return res.redirect('/');
+                 res.redirect('/');
         
             }else{
                 console.log('Password Not Matching...try again!!')
             }
 
-    //     }else{
-    //         console.log('User already exist')
-    //     }
-    // });
+        }else{
+            console.log('User already exist')
+        }
+    });
 
 });
 
@@ -138,19 +158,49 @@ app.post('/forgot', urlencodedParser, function (req, res){
 	var email= req.body.email;
 	var password = req.body.password;
 
-    var query = { email: email };
-    db.collection("login").find(query).toArray(function(err, result) {
+    var myquery = { email: email };
+    var newvalues = { $set: {password:password } };
+    db.collection("signin").updateOne(myquery, newvalues, function(err, res) {
         if (err) throw err;
-        console.log(result);
-        if(result[0] == 1){
-            ////
-        }
+        console.log("1 document updated");
+    });
+    db.collection("login").updateOne(myquery, newvalues, function(err, res) {
+        if (err) throw err;
+        console.log("1 document updated");
     });
 
-    return res.redirect('/');
+    res.redirect('/')
 });
 
 //-------------------------------------------//
+
+/-------------------------------------------//
+
+app.post('/mailsent', urlencodedParser, function (req, res){
+	var to= req.body.to;
+	var subject= req.body.subject;
+	var message= req.body.message;
+	var from= req.body.from;
+
+    var data = {
+        "to": to,
+        "from": from,
+        "subject": subject,
+        "message": message
+    }
+
+    db.collection('inbox').insertOne(data,(err,collection)=>{
+        if(err){
+            throw err;
+        }
+        console.log("Record Inserted Successfully Into Inbox  collection");
+    });
+
+    res.render('mail',)
+});
+
+//-------------------------------------------//
+
 
 //-------------------------------------------//
 
