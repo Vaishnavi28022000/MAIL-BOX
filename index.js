@@ -87,11 +87,15 @@ app.post('/loggedin', urlencodedParser, function (req, res){
     db.collection("signin").find(query).toArray(function(err, result) {
         if (err) throw err;
         console.log(result);
-        if(result[0].password == password){
-            res.render('mail',{'user': result[0]})
-
+        if(result.length>0){
+            if(result[0].password == password){
+                res.render('mail',{'user': result[0]})
+    
+            }else{
+                console.log('Invalid password');
+                res.redirect('/')
+            }
         }else{
-            console.log('Invalid password');
             res.redirect('/')
         }
     });
