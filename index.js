@@ -18,12 +18,14 @@ var urlencodedParser = bodyParser.urlencoded({ extended: true });
 app.set("view engine","ejs");
 app.use(express.static('static'));
 
+const uri = process.env.MONGODB_URI;
 
 //-------------------------------------------//
 
 //-------------------------------------------//
 
-mongoose.connect('mongodb+srv://vaishnavi:haravrva@cluster0.p1v2h.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',{
+// mongoose.connect('mongodb+srv://vaishnavi:haravrva@cluster0.p1v2h.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',{
+    mongoose.connect(uri,{
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
