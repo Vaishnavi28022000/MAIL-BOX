@@ -62,7 +62,7 @@ app.post('/loggedin', urlencodedParser, function (req, res){
 	var password= req.body.password;
 
     var query = { email: email };
-    db.collection("login").find(query).fetch(function(err, result) {
+    db.collection("login").find(query).toArray(function(err, result) {
         if (err) throw err;
         console.log(result);
         if(result[0].password == password){
@@ -84,7 +84,7 @@ app.post('/signedin', urlencodedParser, function (req, res){
 	var cpassword= req.body.cpassword;
 
     var query = { email: email };
-    db.collection("signin").find(query).fetch(function(err, result1) {
+    db.collection("signin").find(query).toArray(function(err, result1) {
         if (err) throw err;
         console.log(result1);
         if(result1.length==0){
@@ -138,7 +138,7 @@ app.post('/forgot', urlencodedParser, function (req, res){
 	var password = req.body.password;
 
     var query = { email: email };
-    db.collection("login").find(query).fetch(function(err, result) {
+    db.collection("login").find(query).toArray(function(err, result) {
         if (err) throw err;
         console.log(result);
         if(result[0] == 1){
