@@ -78,7 +78,18 @@ app.post('/inbox', urlencodedParser, function (req, res){
     });
 });
 
+app.post('/sent', urlencodedParser, function (req, res){
+	var email= req.body.email;
 
+
+    var query = { from: email };
+
+    db.collection("inbox").find(query).toArray(function(err, result) {
+        if (err) throw err;
+        res.render('inbox',{'data': result})
+
+    });
+});
 //-------------------------------------------//
 
 //-------------------------------------------//
