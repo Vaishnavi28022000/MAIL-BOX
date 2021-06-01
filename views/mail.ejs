@@ -20,7 +20,11 @@
     <button type="submit">Inbox</button>
 </form>
 <br>
-
+<form action="/sent" method="POST">
+    <input type="hidden" name="email" id="email" value=<%= user.email%>>
+    <button type="submit">Sent</button>
+</form>
+<br>
 <a href="/"><input type="button" value="Logout"><br><br></a>
 
 
