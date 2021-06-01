@@ -198,7 +198,8 @@ app.post('/mailsent', urlencodedParser, function (req, res){
         "to": to,
         "from": from,
         "subject": subject,
-        "message": message
+        "message": message,
+        "date": Date()
     }
 
     db.collection('inbox').insertOne(data,(err,collection)=>{

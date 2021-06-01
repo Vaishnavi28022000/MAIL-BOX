@@ -12,9 +12,11 @@
     <table border="solid black 5px">
         <% for(var i=0; i < data.length; i++) { %>
            <tr>
+             <td><%= data[i].from %></td>
              <td><%= data[i].to %></td>
              <td><%= data[i].subject %></td>
              <td><%= data[i].message %></td>
+             <td><%= data[i].date %></td>
            </tr>
         <% } %>
     </table>
