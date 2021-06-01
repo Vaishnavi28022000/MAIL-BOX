@@ -208,7 +208,7 @@ app.post('/mailsent', urlencodedParser, function (req, res){
         console.log("Record Inserted Successfully Into Inbox  collection");
     });
 
-    res.redirect('mail',{'user':from})
+    res.render('mail',{'user':from})
 });
 
 //-------------------------------------------//
