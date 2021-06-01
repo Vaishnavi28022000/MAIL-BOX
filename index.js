@@ -55,6 +55,10 @@ app.get('/forgot', function (req, res){
 	 res.render("forgot");
 });
 
+app.get('/mail', function (req, res){
+	 res.render("mail");
+});
+
 app.post('/compose', urlencodedParser, function (req, res){
 	var email= req.body.email;
 
