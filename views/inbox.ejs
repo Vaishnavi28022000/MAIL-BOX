@@ -4,12 +4,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+    }
+
+    th, td {
+    text-align: left;
+    padding: 16px;
+    }
+
+    tr:nth-child(even) {
+    background-color: #f2f2f2;
+    }
+    </style>
     <title>Inbox</title>
 </head>
 <body>
     <h1>Inbox</h1>
-    <table border="solid black 5px">
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, nesciunt. Fugiat, ea quia! Deserunt libero fugiat excepturi veniam itaque, cum nostrum consequatur soluta possimus neque eveniet quibusdam non obcaecati. Quasi?</p>
+    <table>
+        <tr>
+            <th>From</th>
+            <th>To</th>
+            <th>Subject</th>
+            <th>Message</th>
+            <th>Date</th>
+        </tr>
         <% for(var i=0; i < data.length; i++) { %>
            <tr>
              <td><%= data[i].from %></td>
@@ -20,5 +45,9 @@
            </tr>
         <% } %>
     </table>
+
+    
 </body>
 </html>
+
+
