@@ -34,13 +34,13 @@
 </form>
 <br>
 <form action="/inbox" method="POST">
-    <input type="hidden" name="email" id="email" value=<%= user.email%>>
+    <input type="hidden" name="email" id="email" value=<%= user%>>
     <button class="btn"><i class="fa fa-envelope"></i> Inbox</button>
 </form>
 <br>
 
 <form action="/sent" method="POST">
-    <input type="hidden" name="email" id="email" value=<%= user.email%>>
+    <input type="hidden" name="email" id="email" value=<%= user%>>
     <button class="btn"><i class="fa fa-envelope-o"></i> Sent</button>
 </form>
 <br>
