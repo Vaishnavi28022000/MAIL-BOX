@@ -29,23 +29,23 @@
 
 <form action="/compose" method="POST">
     <input type="hidden" name="email" id="email" value=<%= user.email%>>
-    <button class="btn"><i class="fa fa-home"></i> Compose</button>
+    <button class="btn"><i class="fa fa-plus"></i> Compose</button>
 </form>
 <br>
 <form action="/inbox" method="POST">
     <input type="hidden" name="email" id="email" value=<%= user.email%>>
-    <button class="btn"><i class="fa fa-bars"></i> Inbox</button>
+    <button class="btn"><i class="fa fa-envelope"></i> Inbox</button>
 </form>
 <br>
 
 <form action="/sent" method="POST">
     <input type="hidden" name="email" id="email" value=<%= user.email%>>
-    <button class="btn"><i class="fa fa-trash"></i> Sent</button>
+    <button class="btn"><i class="fa fa-envelope-o"></i> Sent</button>
 </form>
 <br>
 
 <form action="/" method="GET">
-    <button class="btn"><i class="fa fa-close"></i> Logout</button>
+    <button class="btn"><i class="fa fa-sign-out"></i> Logout</button>
 </form>
 
 </body>
