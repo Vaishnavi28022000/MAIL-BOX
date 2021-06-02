@@ -4,30 +4,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Mail</title>
+    <style>
+        .btn {
+          background-color: DodgerBlue;
+          border: none;
+          color: white;
+          padding: 12px 16px;
+          font-size: 16px;
+          cursor: pointer;
+        }
+        
+        /* Darker background on mouse-over */
+        .btn:hover {
+          background-color: RoyalBlue;
+        }
+        </style>
 </head>
 <body>
     
 <h1 >This is Mail Page</h1>
+<p>Select One of your choice</p>
 
 <form action="/compose" method="POST">
     <input type="hidden" name="email" id="email" value=<%= user.email%>>
-    <button type="submit" style="animation: both;">Compose</button>
+    <button class="btn"><i class="fa fa-home"></i> Compose</button>
 </form>
 <br>
 <form action="/inbox" method="POST">
     <input type="hidden" name="email" id="email" value=<%= user.email%>>
-    <button type="submit">Inbox</button>
+    <button class="btn"><i class="fa fa-bars"></i> Inbox</button>
 </form>
 <br>
+
 <form action="/sent" method="POST">
     <input type="hidden" name="email" id="email" value=<%= user.email%>>
-    <button type="submit">Sent</button>
+    <button class="btn"><i class="fa fa-trash"></i> Sent</button>
 </form>
 <br>
-<a href="/"><input type="button" value="Logout"><br><br></a>
 
-
+<form action="/" method="GET">
+    <button class="btn"><i class="fa fa-close"></i> Logout</button>
+</form>
 
 </body>
 </html>
