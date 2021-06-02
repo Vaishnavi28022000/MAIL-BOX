@@ -55,9 +55,6 @@ app.get('/forgot', function (req, res){
 	 res.render("forgot");
 });
 
-app.get('/mail', function (req, res){
-	 res.render("mail");
-});
 
 app.post('/compose', urlencodedParser, function (req, res){
 	var email= req.body.email;
@@ -90,6 +87,7 @@ app.post('/sent', urlencodedParser, function (req, res){
 
     });
 });
+
 //-------------------------------------------//
 
 //-------------------------------------------//
@@ -103,7 +101,7 @@ app.post('/loggedin', urlencodedParser, function (req, res){
         console.log(result);
         if(result.length>0){
             if(result[0].password == password){
-                res.render('mail',{'user': result[0]})
+                res.render('mail',{'user': result[0].email})
     
             }else{
                 console.log('Invalid password');
